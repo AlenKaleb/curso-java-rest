@@ -61,5 +61,12 @@ public class PessoaAPI {
 		repositorio.getMapPessoa().put(cpf, pessoa);
 		return Response.ok(repositorio.getMapPessoa()).build();
 	}
+	
+	@GET
+	@Path("/{cpf}/{id}")
+	public Response associar(@PathParam("cpf") String cpf, @PathParam("id") Integer id) {
+		repositorio.getMapPessoa().get(cpf).setConta(repositorio.getMapConta().get(id));
+		return Response.ok(repositorio.getMapPessoa().get(cpf)).build();
+	}
 
 }

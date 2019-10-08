@@ -1,5 +1,7 @@
 package com.stefanini.hackathon.rest;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,9 +13,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Path("/conta")
 public class ContaAPI {
 
-public ContaAPI() {
+	public ContaAPI() {
 		
 	}
 	
@@ -21,22 +24,45 @@ public ContaAPI() {
 	Repositorio repositorio;
 	
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response consultar() {
+		return Response.ok(repositorio.getMapConta()).build();
+	}
+	
+	@GET
+	@Path("/{id}")
+	public Response consultar(@PathParam("id") Integer id) {
+		return Response.ok(repositorio.getMapConta().get(id)).build();
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response inserir(ArrayList<Conta> contas) {
+		for (Conta conta : contas) {
+			repositorio.getMapConta().put(conta.getId(), conta);
+		}
+		
 		return Response.ok(repositorio.getMapConta()).build();
 	}
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response inserir(Conta conta) {
-		repositorio.getMapConta().put(conta.getIdConta(), conta);
-		System.out.println(conta.getIdConta());
-		return Response.ok(repositorio.getMapConta().get(conta.getIdConta())).build();
+		repositorio.getMapConta().put(conta.getId(), conta);
+		System.out.println(conta.getId());
+		return Response.ok(repositorio.getMapConta().get(conta.getId())).build();
 	}
 	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response inserir() {
+		
+		return Response.ok().build();
+	}
+	
+	
 	@DELETE
-	@Path("/{idConta}")
-	public Response excluir(@PathParam("idConta") Integer id) {
+	@Path("/{id}")
+	public Response excluir(@PathParam("id") Integer id) {
 		repositorio.getMapConta().remove(id);
 		return Response.ok(repositorio.getMapConta().get(id)).build();
 	}

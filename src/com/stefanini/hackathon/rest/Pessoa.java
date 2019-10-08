@@ -6,6 +6,8 @@ public class Pessoa {
 	
 	private String cpf;
 	
+	private Conta conta;
+	
 	public Pessoa() {
 		
 	}
@@ -24,6 +26,14 @@ public class Pessoa {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 	
 }
