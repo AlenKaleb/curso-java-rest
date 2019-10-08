@@ -1,9 +1,12 @@
-package com.stefanini.hackathon.rest;
+package com.stefanini.hackathon.rest.persistence;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Singleton;
+
+import com.stefanini.hackathon.rest.entidades.Conta;
+import com.stefanini.hackathon.rest.entidades.Pessoa;
 
 @Singleton
 public class Repositorio {

@@ -1,4 +1,4 @@
-package com.stefanini.hackathon.rest;
+package com.stefanini.hackathon.rest.entidades;
 
 public class Pessoa {
 

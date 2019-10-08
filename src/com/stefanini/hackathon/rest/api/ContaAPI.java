@@ -1,4 +1,4 @@
-package com.stefanini.hackathon.rest;
+package com.stefanini.hackathon.rest.api;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.stefanini.hackathon.rest.entidades.Conta;
+import com.stefanini.hackathon.rest.persistence.Repositorio;
 
 @Path("/conta")
 public class ContaAPI {
@@ -37,10 +40,7 @@ public class ContaAPI {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response inserir(ArrayList<Conta> contas) {
-		for (Conta conta : contas) {
-			repositorio.getMapConta().put(conta.getId(), conta);
-		}
-		
+		contas.forEach(conta -> repositorio.getMapConta().put(conta.getId(), conta));
 		return Response.ok(repositorio.getMapConta()).build();
 	}
 	
