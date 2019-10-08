@@ -28,6 +28,12 @@ public class PessoaAPI {
 		return Response.ok(repositorio.getMapPessoa()).build();
 	}
 	
+	@GET
+	@Path("/{cpf}")
+	public Response consultar(@PathParam("cpf") String cpf) {
+		return Response.ok(repositorio.getMapPessoa().get(cpf)).build();
+	}
+	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response inserir(Pessoa pessoa) {
@@ -46,7 +52,7 @@ public class PessoaAPI {
 	@DELETE
 	public Response excluir2(@QueryParam("cpf") String cpf) {
 		repositorio.getMapPessoa().remove(cpf);
-		return Response.ok(repositorio.getMapPessoa().get(cpf)).build();
+		return Response.ok(repositorio.getMapPessoa()).build();
 	}
 	
 	@PUT
